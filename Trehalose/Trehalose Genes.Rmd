@@ -1,0 +1,47 @@
+```{r}
+#load things in
+library(edgeR)
+library(gplots)
+setwd("~/Documents/LabDocuments/Csativa/Trehalose")
+x <- read.delim("csativaFeatureCounts.txt", row.names = 1)
+matrix <- read.delim("GenotypeNitrogendf.txt", row.names = 1)
+matrix$Nitrogen = as.factor(matrix$Nitrogen)
+x <- as.matrix(x)
+group <- gsub("Rep?", "", colnames(x))
+trehalosegenes <- read.delim("trehalose.txt",header = FALSE)
+```
+
+```{r}
+#Normalize the Counts of x
+x_n <- cpm(x)
+#Remove all that are not for trehalose/trehalase
+genes <- c(trehalosegenes[,1])
+x_tre <- subset(x_n, row.names(x_n) %in% genes)
+#It appears two of the genes were not in the differentially expressed genes
+```
+
+```{r}
+#Get matrixies set up
+y <- DGEList(counts = x_tre, group = group)
+keep <- filterByExpr(y)
+y <- y[keep,,keep.lib.sizes= F]
+y <- calcNormFactors(y)
+flowermatrix <- model.matrix(~Genotype*Nitrogen, matrix)
+```
+
+```{r}
+y <- estimateDisp(y, flowermatrix)
+fit <- glmFit(y, flowermatrix)
+genotypeTest <- glmLRT(fit, coef = 2:3)
+```
+
+```{r}
+topGenotypes <- topTags(genotypeTest)
+topGenotypes
+```
+
+```{r}
+gt <- genotypeTest[["coefficients"]]
+ht <- heatmap.2(gt[,2:3])
+```
+
