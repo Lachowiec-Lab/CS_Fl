@@ -21,9 +21,27 @@ x_tre <- subset(x_n, row.names(x_n) %in% genes)
 ```
 
 ```{r}
-#This section has to be run in the console to allow for the labels to show fully
-N1 <- c(1,2,3,7,8,10,13,14,18)
-x_N1 <- x_tre[,N1]
-heatmap(x_N1)
+#Get matrixies set up
+y <- DGEList(counts = x_tre, group = group)
+keep <- filterByExpr(y)
+y <- y[keep,,keep.lib.sizes= F]
+y <- calcNormFactors(y)
+flowermatrix <- model.matrix(~Genotype*Nitrogen, matrix)
+```
+
+```{r}
+y <- estimateDisp(y, flowermatrix)
+fit <- glmFit(y, flowermatrix)
+genotypeTest <- glmLRT(fit, coef = 2:3)
+```
+
+```{r}
+topGenotypes <- topTags(genotypeTest)
+topGenotypes
+```
+
+```{r}
+gt <- genotypeTest[["coefficients"]]
+ht <- heatmap.2(gt[,2:3])
 ```
 
