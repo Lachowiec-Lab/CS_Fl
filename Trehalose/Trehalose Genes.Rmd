@@ -21,9 +21,50 @@ x_tre <- subset(x_n, row.names(x_n) %in% genes)
 ```
 
 ```{r}
-#This section has to be run in the console to allow for the labels to show fully
+#This section has to be run in the console to allow for the labels to show fully on the plot
 N1 <- c(1,2,3,7,8,10,13,14,18)
 x_N1 <- x_tre[,N1]
 heatmap(x_N1)
+```
+
+```{r}
+#Take mean of Reps and compile into one heatmap only showing Nitrogen Levels
+GenotypeNitrogen <- matrix(nrow = 65) 
+
+g68_1_Levels <- c(1,2,7)
+g68_1 <- x_tre[,g68_1_Levels]
+G68_1_mean <- rowMeans(g68_1)
+GenotypeNitrogen <- cbind(GenotypeNitrogen,G68_1_mean)
+
+GenotypeNitrogen <- subset(GenotypeNitrogen, select = -1)
+
+g68_0.1_Levels <- c(4:6)
+g68_0.1 <- x_tre[,g68_0.1_Levels]
+G68_0.1_mean <- rowMeans(g68_0.1)
+GenotypeNitrogen <- cbind(GenotypeNitrogen, G68_0.1_mean)
+
+g36_1_Levels <- c(3,8,10)
+g36_1 <- x_tre[,g36_1_Levels]
+G36_1_mean <- rowMeans(g36_1)
+GenotypeNitrogen <- cbind(GenotypeNitrogen,G36_1_mean)
+
+g36_0.1_Levels <- c(9,15,17)
+g36_0.1 <- x_tre[,g36_0.1_Levels]
+G36_0.1_mean <- rowMeans(g36_0.1)
+GenotypeNitrogen <- cbind(GenotypeNitrogen,G36_0.1_mean)
+
+g1_1_Levels <- c(13,14,18)
+g1_1 <- x_tre[,g1_1_Levels]
+G1_1_mean <- rowMeans(g1_1)
+GenotypeNitrogen <- cbind(GenotypeNitrogen,G1_1_mean)
+
+g1_0.1_Levels <- c(11,12,16)
+g1_0.1 <- x_tre[,g1_0.1_Levels]
+G1_0.1_mean <- rowMeans(g1_0.1)
+GenotypeNitrogen <- cbind(GenotypeNitrogen,G1_0.1_mean)
+
+#Run this line in the console for full labels
+heatmap(GenotypeNitrogen)
+
 ```
 
