@@ -10,7 +10,9 @@ Csa03g026110	AT1G22210	TPPC	trehalose-6-phosphate phosphatase C
 Csa03g027670	AT1G23870	ATTPS9;TPS9;TPS9	trehalose-phosphatase/synthase 9;TREHALOSE -6-PHOSPHATASE SYNTHASE S9;trehalose-phosphatase/synthase 9
 Csa03g039260	AT1G35910	TPPD	trehalose-6-phosphate phosphatase D
 Csa05g048320	AT1G60140	ATTPS10;TPS10;TPS10	trehalose phosphate synthase;trehalose phosphate synthase;TREHALOSE PHOSPHATE SYNTHASE 10
+Csa05g083350	AT1G68020	ATTPS6;TPS6	TREHALOSE -6-PHOSPHATASE SYNTHASE S6
 Csa07843s010	AT5G51460	ATTPPA;TPPA	trehalose-6-phosphate phosphatase A
+Csa07g033670	AT1G68020	ATTPS6;TPS6	TREHALOSE -6-PHOSPHATASE SYNTHASE S6
 Csa07g037120	AT1G70290	ATTPS8;ATTPSC;TPS8	trehalose-6-phosphatase synthase S8
 Csa07g050750	AT1G78090	ATTPPB;TPPB	Arabidopsis thaliana trehalose-6-phosphate phosphatase B;trehalose-6-phosphate phosphatase B
 Csa07g052300	AT2G22190	TPPE	trehalose-6-phosphate phosphatase E
