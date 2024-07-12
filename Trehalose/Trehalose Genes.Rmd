@@ -63,10 +63,8 @@ g1_0.1 <- x_tre[,g1_0.1_Levels]
 G1_0.1_mean <- rowMeans(g1_0.1)
 GenotypeNitrogen <- cbind(GenotypeNitrogen,G1_0.1_mean)
 
-rownames(GenotypeNitrogen)
-
 #Run this line in the console for full labels
-heatmap(as.matrix(GenotypeNitrogen, row.names = T))
+heatmap.2(as.matrix(GenotypeNitrogen), col=bluered(100), key = T)
 
 ```
 
